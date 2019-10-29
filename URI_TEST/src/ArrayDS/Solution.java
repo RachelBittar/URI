@@ -1,38 +1,95 @@
 /*
- * An array is a type of data structure that stores elements of the same type in a contiguous block of memory. 
- * In an array, , of size , each memory location has some unique index,  (where ), that can be referenced as 
- *  (you may also see it written as ).
+ * 
+ * Given a  2D Array, :
 
-Given an array, , of  integers, print each element in reverse order as a single line of space-separated integers.
-Note: If you've already solved our C++ domain's Arrays Introduction challenge, you may want to skip this.
+1 1 1 0 0 0
+0 1 0 0 0 0
+1 1 1 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
 
+We define an hourglass in  to be a subset of values with indices falling in this pattern in 's graphical 
+representation:
+
+a b c
+  d
+e f g
+
+There are  hourglasses in , and an hourglass sum is the sum of an hourglass' values. 
+Calculate the hourglass sum for every hourglass in , then print the maximum hourglass sum.
+
+For example, given the 2D array:
+
+-9 -9 -9  1 1 1 
+ 0 -9  0  4 3 2
+-9 -9 -9  1 2 3
+ 0  0  8  6 6 0
+ 0  0  0 -2 0 0
+ 0  0  1  2 4 0
+We calculate the following  hourglass values:
+
+-63, -34, -9, 12, 
+-10, 0, 28, 23, 
+-27, -11, -2, 10, 
+9, 17, 25, 18
+Our highest hourglass value is  from the hourglass:
+
+0 4 3
+  1
+8 6 6
+
+Note: If you have already solved the Java domain's Java 2D Array challenge, you may wish to skip this challenge.
+
+Function Description
+
+Complete the function hourglassSum in the editor below. 
+It should return an integer, the maximum hourglass sum in the array.
+
+hourglassSum has the following parameter(s):
+
+arr: an array of integers
 Input Format
 
-The first line contains an integer,  (the number of integers in ). 
-The second line contains  space-separated integers describing .
+Each of the  lines of inputs  contains  space-separated integers .
 
 Constraints
+
 Output Format
 
-Print all  integers in  in reverse order as a single line of space-separated integers.
+Print the largest (maximum) hourglass sum found in .
 
-Sample Input 1
+Sample Input
 
-CopyDownload
-Array: arr
-1
-4
-3
-2
+1 1 1 0 0 0
+0 1 0 0 0 0
+1 1 1 0 0 0
+0 0 2 4 4 0
+0 0 0 2 0 0
+0 0 1 2 4 0
+Sample Output
 
- 
-4
-1 4 3 2
-Sample Output 1
+19
+Explanation
 
-2 3 4 1*/
+ contains the following hourglasses:
 
-package ArrayDS;
+image
+
+The hourglass with the maximum sum () is:
+
+2 4 4
+  2
+1 2 4
+ * 
+ * 
+ * */
+
+
+
+
+
+package ArrayDS_2D;
 
 import java.io.*;
 import java.math.*;
@@ -44,50 +101,69 @@ import java.util.regex.*;
 
 public class Solution {
 
-    // Complete the reverseArray function below.
-    static int[] reverseArray(int[] a) {
+   
+	// Complete the hourglassSum function below.
+    static int hourglassSum(int[][] arr) {
     	
-    	int[] b = new int[a.length];
-    	int aux = 0;
-    	
-    	
-    	for(int i = a.length-1; i>= 0; i--) {
-    	 
-    		b[i] = a[aux];
-    		aux++;
-    		    		
-    	}
-    	return b;
-    		
-    }
+    	        int sum=0;
+    	        int[][] arrayAux = new int[4][4];
+    	     
+    	        
+    	        for(int i=0;i<arr.length-2;i++){
+    	        	
+    	            for(int j=0;j<arr.length-2;j++)
+    	            {
+    	            	arrayAux[i][j]=arr[i][j]+arr[i][j+1]+arr[i][j+2]
+    	                		+			arr[i+1][j+1]
+    	                		+arr[i+2][j]+arr[i+2][j+1]+arr[i+2][j+2];
+    	            }
+    	        }
+    	        
+    	        
+  
+    	        sum=Integer.MIN_VALUE;
+    	        
+    	        for(int i=0;i<arrayAux.length;i++){
+    	        	
+    	            for(int j=0;j<arrayAux.length;j++){
+    	            	
+    	                if(arrayAux[i][j]>=sum) {
+    	                	sum=arrayAux[i][j];
+    	                }
+    	            }
+    	        }
+    	        
+    	        
+    	        return(sum);
+    	} 
+
+   
 
     private static final Scanner scanner = new Scanner(System.in);
+	private static int[][] templates;
 
     public static void main(String[] args) throws IOException {
-    
-        int arrCount = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+      
+        int[][] arr = new int[6][6];
 
-        int[] arr = new int[arrCount];
+        for (int i = 0; i < 6; i++) {
+            String[] arrRowItems = scanner.nextLine().split(" ");
+            scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-        String[] arrItems = scanner.nextLine().split(" ");
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
-        for (int i = 0; i < arrCount; i++) {
-            int arrItem = Integer.parseInt(arrItems[i]);
-            arr[i] = arrItem;
+            for (int j = 0; j < 6; j++) {
+                int arrItem = Integer.parseInt(arrRowItems[j]);
+                arr[i][j] = arrItem;
+            }
         }
 
-        int[] res = reverseArray(arr);
+       // hourglassSum(arr);
+        int result = hourglassSum(arr);
+        
+        System.out.println(result);
 
-        for (int i = 0; i < res.length; i++) {
-        	
-        	System.out.print(res[i] + " ");
-
-           
-        }
-
-  
+        
         scanner.close();
+        
     }
+    
 }
