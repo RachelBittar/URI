@@ -89,7 +89,7 @@ The hourglass with the maximum sum () is:
 
 
 
-package ArrayDS_2D;
+package ArrayDS;
 
 import java.io.*;
 import java.math.*;

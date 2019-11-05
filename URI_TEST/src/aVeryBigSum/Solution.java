@@ -19,7 +19,7 @@ public class Solution {
     		
     	}
     	
-    	return sum;
+    	return (long) sum;
 
     }
 
