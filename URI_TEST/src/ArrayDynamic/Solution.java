@@ -1,64 +1,57 @@
 package ArrayDynamic;
 
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
-
-class Result {
-
-    /*
-     * Complete the 'dynamicArray' function below.
-     *
-     * The function is expected to return an INTEGER_ARRAY.
-     * The function accepts following parameters:
-     *  1. INTEGER n
-     *  2. 2D_INTEGER_ARRAY queries
-     */
-
-    public static List<Integer> dynamicArray(int n, List<List<Integer>> queries) {
-    // Write your code here
-
-    }
-
-}
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Solution {
-    public static void main(String[] args) throws IOException {
-    	
-    	
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-  
-        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
 
-        int n = Integer.parseInt(firstMultipleInput[0]);
+	List<Integer> seq = new ArrayList<Integer>();
+	List<List<Integer>> seqList = new ArrayList<List<Integer>>();
+	int lastAns = 0;
 
-        int q = Integer.parseInt(firstMultipleInput[1]);
+	public Solution(int N) {
+		for (int i = 0; i < N; i++) {
+			seq = new ArrayList<Integer>();
+			seqList.add(seq);
+		}
+	}
 
-        List<List<Integer>> queries = new ArrayList<>();
+	void appendValue(int x, int y, int N) {
+		int rowIndex = (x ^ lastAns) % N;
+		List<Integer> seq = seqList.get(rowIndex);
+		seq.add(y);
+	}
 
-        for (int i = 0; i < q; i++) {
-            String[] queriesRowTempItems = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+	private void printValue(int x, int y, int N) {
+		int colIndex = 0;
+		int rowIndex = (x ^ lastAns) % N;
+		List<Integer> seq = seqList.get(rowIndex);
+		colIndex = y % seq.size();
+		lastAns = seq.get(colIndex);
+		System.out.println(lastAns);
+	}
 
-            List<Integer> queriesRowItems = new ArrayList<>();
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int Q = sc.nextInt();
+		
+		Solution da = new Solution(N);
+		
+		for (int i = 0; i < Q; i++) {
+			int queryType = sc.nextInt();
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+			if (queryType == 1) {
+				da.appendValue(x, y, N);
+			} else {
+				da.printValue(x, y, N);
+			}
 
-            for (int j = 0; j < 3; j++) {
-                int queriesItem = Integer.parseInt(queriesRowTempItems[j]);
-                queriesRowItems.add(queriesItem);
-            }
+		}
+		sc.close();
+	}
 
-            queries.add(queriesRowItems);
-        }
-
-        List<Integer> result = Result.dynamicArray(n, queries);
-
-        System.out.println(result);
-
-   
-
-        bufferedReader.close();
-       
 }
