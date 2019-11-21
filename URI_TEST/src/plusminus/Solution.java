@@ -36,9 +36,9 @@ public class Solution {
     	}
     	
     	
-    	System.out.print(df2.format(plus/arr.length) + " ");
-    	System.out.print(df2.format(minus/arr.length)+ " ");
-    	System.out.print(df2.format(zero/arr.length));
+    	System.out.println(df2.format(plus/arr.length) + " ");
+    	System.out.println(df2.format(minus/arr.length)+ " ");
+    	System.out.println(df2.format(zero/arr.length));
     
     	
     	

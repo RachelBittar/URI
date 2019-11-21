@@ -12,14 +12,14 @@ public class Solution {
     // Complete the aVeryBigSum function below.
     static long aVeryBigSum(long[] ar) {
 
-    	double sum =0;
+    	long sum =0;
     	for(int i=0; i<ar.length; i++) {
     		
     		sum = sum+ar[i];
     		
     	}
     	
-    	return (long) sum;
+    	return sum;
 
     }
 

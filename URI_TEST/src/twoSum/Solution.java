@@ -16,10 +16,9 @@ public class Solution {
 
 	public static void main(String[] args) {
 		
-		String[] nd = scanner.nextLine().split(" ");
-
-		int[] a = {3,2,4};
-		int d = 6;
+	
+		int[] a = {1,2};
+		int d = 2;
 
 		int[] result = twoSum(a, d);
 
@@ -29,11 +28,12 @@ public class Solution {
         
 
 	}
+
 	
 	public static int[] twoSum(int[] nums, int target) {
-        
+       
 		int diff; 
-      
+	      
         for (int i = 0; i<nums.length; i++) {  
         	
             diff = target - nums[i];
@@ -48,8 +48,8 @@ public class Solution {
                 }
             }            
         }
+        
         return new int[] {0, 0};
-  
-	}
-	
+		
+  }
 }

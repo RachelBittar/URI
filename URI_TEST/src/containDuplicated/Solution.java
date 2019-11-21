@@ -12,12 +12,12 @@ public class Solution {
 
 	}
 
-	private static boolean containsDuplicate(int[] array) {
+	private static boolean containsDuplicate(int[] nums) {
 		
-		for(int i=0; i<array.length-1; i++) {
-			for(int y=i+1; y<array.length; y++)
+		for(int i=0; i<nums.length-1; i++) {
+			for(int y=i+1; y<nums.length; y++)
 			
-			if(array[i]==array[y]) {
+			if(nums[i]==nums[y]) {
 				return true;
 			}
 		}

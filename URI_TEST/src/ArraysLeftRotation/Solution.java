@@ -17,11 +17,12 @@ public class Solution {
 		int[] array = new int[a.length];
 		
 		for (int i = 0; i < a.length; i++) {
-			
+	
 			index = (i + a.length -d)%a.length;
+			System.out.println(index);
 			array[index] = a[i]; 
 			
-		}	
+		}		
 		return array;
 
 	}

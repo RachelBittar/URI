@@ -15,16 +15,13 @@ public class Solution {
     	
     	for(int i=1;i<=n;i++)
     	  {
-    	   for(int j=1;j<=n;j++)
-    	    
+    	   for(int j=1;j<=n;j++) 
     	   {
-    	    if((i+j)>n)
-    	    {
-    	    System.out.print("#");
+    	    if((i+j)>n){
+    	    	System.out.print("#");
     	    }
-    	    else
-    	    {
-    	     System.out.print(" ");
+    	    else{
+    	    	System.out.print(" ");
     	    }
     	    
     	   }
@@ -32,10 +29,7 @@ public class Solution {
     	   
     	  }
     	    
-    		
-    								
-   	
-
+    	
     }
 
     private static final Scanner scanner = new Scanner(System.in);

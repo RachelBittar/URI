@@ -38,20 +38,40 @@ public class Solution {
            		
 }
 */
-
-	private static void rotate(int[] nums, int k) {
-		
-		 int[] a = new int[nums.length];
-		 
-	     for (int i = 0; i < nums.length; i++) {
-	        a[(i + k) % nums.length] = nums[i];
-	     }
-	     
-	     for (int i = 0; i < nums.length; i++) {
-	            nums[i] = a[i];
+	 public static void rotate(int[] nums, int k) {
+	        int start, end;
+	        
+	        for (int i = 0; i < k; i++) {
+	            end = nums[nums.length - 1];
+	            
+	            for (int j = 0; j < nums.length; j++) {
+	            	
+	            	start = nums[j];
+	                nums[j] = end;
+	                end = start;
+	            }
 	        }
-		}
+	    }
+}
+
+	
+	
+	
+	
+	
+//	private static void rotate(int[] nums, int k) {
+//		
+//		 int[] a = new int[nums.length];
+//		 
+//	     for (int i = 0; i < nums.length; i++) {
+//	        a[(i + k) % nums.length] = nums[i];
+//	     }
+//	     
+//	     for (int i = 0; i < nums.length; i++) {
+//	            nums[i] = a[i];
+//	        }
+//		}
 	
 		
-	
-}
+//}
+//}
